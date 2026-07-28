@@ -1,0 +1,76 @@
+{
+  "version": "V29 Formulario Municipal Editable 3.0",
+  "html_sha256": "f357793413c90e640ba2f65a6e1aa4854991034caf81455e7dab50de303692af",
+  "data_unchanged": true,
+  "formula_functions": [
+    {
+      "function": "urban",
+      "unchanged": true,
+      "sha256": "37df649e52e8d7177b65512139ad17c6da87b96fdefdd54a90c869a6de141181"
+    },
+    {
+      "function": "rural",
+      "unchanged": true,
+      "sha256": "0e1a685dfb9cebff00e79b1027adefb5b44e1199be19b632996744e45527056b"
+    },
+    {
+      "function": "agroCalc",
+      "unchanged": true,
+      "sha256": "6fb1517f0c29310f1b9351aa4d306a3150eb9403c6f68f9ae64e87e2724345c5"
+    },
+    {
+      "function": "linked",
+      "unchanged": true,
+      "sha256": "3f1dcf9aa20025fdd803128bfccfbea3fa0cb19cd519ccb8e0072c7d5530e37d"
+    },
+    {
+      "function": "ross",
+      "unchanged": true,
+      "sha256": "6b52594618fa6e522105204b4588cabc655f52359f5967b7157766691e91c901"
+    },
+    {
+      "function": "landCalc",
+      "unchanged": true,
+      "sha256": "cf990920cd0dab55eae335ab21b3e52a52876da240579833cb1724b8299e3b9e"
+    },
+    {
+      "function": "regExp",
+      "unchanged": true,
+      "sha256": "d3ec5b1ed2a26560f3958dfc74b2890cf6c3a7f022cf4e0610a67a0b492d1dd5"
+    },
+    {
+      "function": "urbanAreaExp",
+      "unchanged": true,
+      "sha256": "273c306ccd944ce476a2ada4a5eec64a14237e0d36ac07f7813684635c02f85a"
+    },
+    {
+      "function": "frontExp",
+      "unchanged": true,
+      "sha256": "0ed2914e5d5c8eb755fab23cd3e6b399ec017f0bd3e075d63b1f13dd243faf6d"
+    }
+  ],
+  "all_formula_functions_unchanged": true,
+  "v29_counts": {
+    "zones": 181,
+    "agro": 9,
+    "catalog": 476,
+    "heidecke": 9
+  },
+  "v29_tests": "9/9",
+  "audit_status": "APROBADO",
+  "browser_errors": [],
+  "services1_first": "1 - SIN ACERA Y SIN CORDÓN Y CAÑO",
+  "services2_last": "16 - ALUMBRADO + TELÉFONO/INTERNET FIJO + ELECTRICIDAD + CAÑERÍA",
+  "construction_selector_options": 235,
+  "pdf": {
+    "valid": true,
+    "pages": 1,
+    "form_fields": 81,
+    "sample_size": 42916
+  },
+  "word": {
+    "editable_doc_html": true,
+    "render_pages": 1,
+    "sample_size": 6528
+  }
+}
