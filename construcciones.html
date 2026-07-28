@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12345a">
+  <meta name="description" content="Construcciones y Ross-Heidecke del V29">
+  <title>Construcciones · Motor ONT V29</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">☰</button>
+  <div class="brand">
+    <div class="brand-mark">ONT</div>
+    <div class="brand-copy"><strong>Motor de Valoración Fiscal ONT</strong><small>Sarapiquí · Matriz V29 auditada</small></div>
+  </div>
+  <div class="header-context">
+    <span>Módulo actual</span>
+    <strong id="currentPage">Valoración inmobiliaria</strong>
+  </div>
+  <div class="header-tools">
+    <div class="connection" id="connection"><span class="connection-dot"></span><span>En línea</span></div>
+    <button class="btn btn-secondary" id="importBtn" title="Importar respaldo"><span>Importar</span> ⇧</button>
+    <input type="file" id="importInput" accept=".json,application/json" hidden>
+    <button class="btn btn-secondary" id="exportBtn" title="Exportar respaldo"><span>Exportar</span> ⇩</button>
+    <button class="btn btn-success" id="saveBtn"><span>Guardar</span> ✓</button>
+    <button class="btn btn-primary" id="newBtn"><span>Nuevo</span> ＋</button>
+  </div>
+</header>
+<div class="app-layout">
+  <aside class="sidebar"><nav id="sidebarNav"></nav></aside>
+  <main class="page">
+    <div class="page-shell">
+      
+<section class="hero">
+  <div><h1>Construcciones</h1><p>Selección de tipologías, valor base, edad, estado de conservación y cantidad o área.</p></div>
+  <div class="hero-meta"><strong id="buildingsTotal">₡0</strong><span>Valor actual acumulado</span></div>
+</section>
+<div class="progress-strip" id="progress"></div>
+<section class="panel">
+  <header class="panel-header"><div><h2>Detalle de líneas</h2><p>Las búsquedas, valores base y vidas útiles provienen del catálogo V29.</p></div><span class="badge badge-blue">Ross-Heidecke</span></header>
+  <div class="panel-body">
+    <div class="toolbar"><button class="btn btn-primary" id="addBuilding" type="button">＋ Agregar línea</button><button class="btn btn-secondary" id="clearBuildings" type="button">Limpiar</button></div>
+    <datalist id="buildingCodes"></datalist>
+    <div class="table-wrap"><table id="buildingsTable"><thead><tr>
+      <th>N°</th><th>Código</th><th>Familia</th><th>Categoría</th><th>Descripción V29</th><th>Valor unitario</th><th>Unidad</th><th>Vida útil</th><th>Edad</th><th>Estado</th><th>Cantidad / área</th><th>Factor RH</th><th>Valor actual</th><th>Control</th><th></th>
+    </tr></thead><tbody></tbody></table></div>
+  </div>
+  <footer class="panel-footer"><a class="btn btn-secondary" href="terreno.html">← Anterior</a><a class="btn btn-primary" href="obras.html">Continuar →</a></footer>
+</section>
+<div class="modal" id="buildingModal"><div class="modal-card"><div class="modal-head"><div><h3 data-modal-title></h3><p data-modal-meta></p></div><button class="btn btn-danger" data-modal-close>Cerrar</button></div><div class="modal-content" data-modal-content></div></div></div>
+
+      <div class="footer">Motor ONT V29 · Archivo fuente con trazabilidad SHA-256 · Datos locales en el navegador.</div>
+    </div>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<script type="module" src="assets/js/pages/construcciones.js"></script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.warn);
+}
+</script>
+</body>
+</html>

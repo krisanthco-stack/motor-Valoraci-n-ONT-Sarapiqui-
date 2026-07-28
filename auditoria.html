@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12345a">
+  <meta name="description" content="Auditoría del Motor ONT V29">
+  <title>Auditoría · Motor ONT V29</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">☰</button>
+  <div class="brand">
+    <div class="brand-mark">ONT</div>
+    <div class="brand-copy"><strong>Motor de Valoración Fiscal ONT</strong><small>Sarapiquí · Matriz V29 auditada</small></div>
+  </div>
+  <div class="header-context">
+    <span>Módulo actual</span>
+    <strong id="currentPage">Valoración inmobiliaria</strong>
+  </div>
+  <div class="header-tools">
+    <div class="connection" id="connection"><span class="connection-dot"></span><span>En línea</span></div>
+    <button class="btn btn-secondary" id="importBtn" title="Importar respaldo"><span>Importar</span> ⇧</button>
+    <input type="file" id="importInput" accept=".json,application/json" hidden>
+    <button class="btn btn-secondary" id="exportBtn" title="Exportar respaldo"><span>Exportar</span> ⇩</button>
+    <button class="btn btn-success" id="saveBtn"><span>Guardar</span> ✓</button>
+    <button class="btn btn-primary" id="newBtn"><span>Nuevo</span> ＋</button>
+  </div>
+</header>
+<div class="app-layout">
+  <aside class="sidebar"><nav id="sidebarNav"></nav></aside>
+  <main class="page">
+    <div class="page-shell">
+      
+<section class="hero">
+  <div><h1>Auditoría y registro de errores</h1><p>Integridad del archivo fuente, pruebas V29 y eventos técnicos registrados por la aplicación.</p></div>
+  <div class="hero-meta"><strong id="auditStatus">—</strong><span>Auditoría estructural</span></div>
+</section>
+<div class="progress-strip" id="progress"></div>
+<section class="cards">
+  <article class="metric"><div class="metric-label">Hojas del V29</div><div class="metric-value" id="auditSheets">—</div></article>
+  <article class="metric"><div class="metric-label">Fórmulas auditadas</div><div class="metric-value" id="auditFormulas">—</div></article>
+  <article class="metric"><div class="metric-label">Referencias rotas</div><div class="metric-value" id="auditRefs">—</div></article>
+  <article class="metric"><div class="metric-label">Enlaces externos</div><div class="metric-value" id="auditLinks">—</div></article>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Trazabilidad del archivo</h2><p>El libro fuente se conserva sin modificaciones dentro del proyecto.</p></div><a class="btn btn-secondary btn-sm" href="tests/index.html">Ejecutar pruebas</a></header>
+  <div class="panel-body" id="sourceAudit"></div>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Auditoría documentada en el V29</h2><p>Ciclos y hallazgos contenidos en la hoja 17_AUDITORIA.</p></div></header>
+  <div class="panel-body"><div class="table-wrap" id="auditRows"></div></div>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Pruebas técnicas del V29</h2><p>Resultados contenidos en la hoja 18_PRUEBAS.</p></div></header>
+  <div class="panel-body"><div class="table-wrap" id="testRows"></div></div>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Registro de la aplicación</h2><p>Errores y advertencias producidos en este navegador.</p></div><div><button class="btn btn-secondary btn-sm" id="downloadLogs">Descargar</button> <button class="btn btn-danger btn-sm" id="clearLogs">Limpiar</button></div></header>
+  <div class="panel-body"><div id="runtimeLogs"></div></div>
+</section>
+
+      <div class="footer">Motor ONT V29 · Archivo fuente con trazabilidad SHA-256 · Datos locales en el navegador.</div>
+    </div>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<script type="module" src="assets/js/pages/auditoria.js"></script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.warn);
+}
+</script>
+</body>
+</html>

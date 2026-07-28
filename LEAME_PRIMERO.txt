@@ -1,0 +1,18 @@
+MOTOR ONT V29 — LEA PRIMERO
+
+1. Abra la carpeta docs.
+2. Lea GUIA_GITHUB_SIN_TERMINAL.md.
+3. Para publicar, suba TODO el contenido de esta carpeta a la raíz del repositorio.
+4. En GitHub: Settings > Pages > Deploy from a branch > main > /(root).
+5. Después de publicar, abra /tests/ para comprobar los cálculos.
+
+ARCHIVO FUENTE:
+Propuesta_Motor_Valoracion_ONT_V29_AUDITADA.xlsx
+
+SHA-256:
+926ad1ad4fcbb086f3dd9f520bc1a4b04104f1867ee64c5ab02df00d72d089a5
+
+IMPORTANTE:
+- No edite assets/js/data-v29.js manualmente.
+- No cargue respaldos JSON con datos personales al repositorio.
+- El programa no abre Excel; por eso no se bloquea si el libro está abierto.

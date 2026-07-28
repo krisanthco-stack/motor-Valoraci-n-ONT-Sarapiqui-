@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12345a">
+  <meta name="description" content="Panel del Motor de Valoración ONT V29">
+  <title>Inicio · Motor ONT V29</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">☰</button>
+  <div class="brand">
+    <div class="brand-mark">ONT</div>
+    <div class="brand-copy"><strong>Motor de Valoración Fiscal ONT</strong><small>Sarapiquí · Matriz V29 auditada</small></div>
+  </div>
+  <div class="header-context">
+    <span>Módulo actual</span>
+    <strong id="currentPage">Valoración inmobiliaria</strong>
+  </div>
+  <div class="header-tools">
+    <div class="connection" id="connection"><span class="connection-dot"></span><span>En línea</span></div>
+    <button class="btn btn-secondary" id="importBtn" title="Importar respaldo"><span>Importar</span> ⇧</button>
+    <input type="file" id="importInput" accept=".json,application/json" hidden>
+    <button class="btn btn-secondary" id="exportBtn" title="Exportar respaldo"><span>Exportar</span> ⇩</button>
+    <button class="btn btn-success" id="saveBtn"><span>Guardar</span> ✓</button>
+    <button class="btn btn-primary" id="newBtn"><span>Nuevo</span> ＋</button>
+  </div>
+</header>
+<div class="app-layout">
+  <aside class="sidebar"><nav id="sidebarNav"></nav></aside>
+  <main class="page">
+    <div class="page-shell">
+      
+<section class="hero">
+  <div><h1>Centro de valoración inmobiliaria</h1><p>Organice el expediente, calcule el terreno y consolide construcciones y obras en un flujo claro, seguro y trazable.</p></div>
+  <div class="hero-meta"><strong id="caseLabel">EXPEDIENTE NUEVO</strong><span id="saveState">Borrador local</span><span data-source-version></span></div>
+</section>
+<div class="progress-strip" id="progress"></div>
+<section class="cards">
+  <article class="metric"><div class="metric-label">Zonas homogéneas</div><div class="metric-value" id="metricZones">—</div><div class="metric-note">Catálogo urbano y rural del V29.</div></article>
+  <article class="metric"><div class="metric-label">Zonas agropecuarias</div><div class="metric-value" id="metricAgro">—</div><div class="metric-note">Valores base por hectárea.</div></article>
+  <article class="metric"><div class="metric-label">Tipologías ONT</div><div class="metric-value" id="metricCatalog">—</div><div class="metric-note">Construcciones, especiales y obras.</div></article>
+  <article class="metric"><div class="metric-label">Valor total actual</div><div class="metric-value" id="metricTotal">₡0</div><div class="metric-note" id="metricStatus">Pendiente de completar.</div></article>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Continuar el expediente</h2><p>Complete cada etapa en orden. Los cálculos se actualizan sin abrir el archivo Excel.</p></div><span class="badge badge-blue">Sin bloqueo de Excel</span></header>
+  <div class="panel-body">
+    <div class="workflow-grid">
+      <a class="workflow-card" href="expediente.html"><span class="workflow-step">01</span><div><strong>Expediente</strong><p>Identificación, método, zonas y datos reales del inmueble.</p></div><span class="workflow-arrow">→</span></a>
+      <a class="workflow-card" href="terreno.html"><span class="workflow-step">02</span><div><strong>Terreno</strong><p>Factores urbanos, rurales, agropecuarios o ligados.</p></div><span class="workflow-arrow">→</span></a>
+      <a class="workflow-card" href="construcciones.html"><span class="workflow-step">03</span><div><strong>Construcciones</strong><p>Tipologías ONT y depreciación Ross–Heidecke.</p></div><span class="workflow-arrow">→</span></a>
+      <a class="workflow-card" href="obras.html"><span class="workflow-step">04</span><div><strong>Obras complementarias</strong><p>Obras, instalaciones y equipo según catálogo V29.</p></div><span class="workflow-arrow">→</span></a>
+      <a class="workflow-card" href="resumen.html"><span class="workflow-step">05</span><div><strong>Resumen técnico</strong><p>Consolidación económica y controles previos.</p></div><span class="workflow-arrow">→</span></a>
+      <a class="workflow-card" href="informe.html"><span class="workflow-step">06</span><div><strong>Informe municipal</strong><p>Vista formal para revisión, impresión y PDF.</p></div><span class="workflow-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+<section class="panel">
+  <header class="panel-header"><div><h2>Expedientes guardados</h2><p>Registros almacenados en este navegador.</p></div><button class="btn btn-secondary btn-sm" id="refreshRecords">Actualizar</button></header>
+  <div class="panel-body"><div class="record-list" id="recordList"><div class="callout">Cargando registros locales…</div></div></div>
+</section>
+<section class="callout warning"><strong>Uso responsable:</strong> el sistema conserva la lógica del V29. No sustituye la inspección de campo, la revisión registral ni la firma del profesional responsable.</section>
+
+      <div class="footer">Motor ONT V29 · Archivo fuente con trazabilidad SHA-256 · Datos locales en el navegador.</div>
+    </div>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<script type="module" src="assets/js/pages/home.js"></script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.warn);
+}
+</script>
+</body>
+</html>

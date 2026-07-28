@@ -1,0 +1,10 @@
+{
+  "name": "motor-ont-v29-sarapiqui",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/calculator.test.mjs",
+    "validate": "node tools/validate-links.mjs",
+    "quality": "node tools/validate-links.mjs && node tests/calculator.test.mjs"
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12345a">
+  <meta name="description" content="Informe municipal del Motor ONT V29">
+  <title>Informe · Motor ONT V29</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">☰</button>
+  <div class="brand">
+    <div class="brand-mark">ONT</div>
+    <div class="brand-copy"><strong>Motor de Valoración Fiscal ONT</strong><small>Sarapiquí · Matriz V29 auditada</small></div>
+  </div>
+  <div class="header-context">
+    <span>Módulo actual</span>
+    <strong id="currentPage">Valoración inmobiliaria</strong>
+  </div>
+  <div class="header-tools">
+    <div class="connection" id="connection"><span class="connection-dot"></span><span>En línea</span></div>
+    <button class="btn btn-secondary" id="importBtn" title="Importar respaldo"><span>Importar</span> ⇧</button>
+    <input type="file" id="importInput" accept=".json,application/json" hidden>
+    <button class="btn btn-secondary" id="exportBtn" title="Exportar respaldo"><span>Exportar</span> ⇩</button>
+    <button class="btn btn-success" id="saveBtn"><span>Guardar</span> ✓</button>
+    <button class="btn btn-primary" id="newBtn"><span>Nuevo</span> ＋</button>
+  </div>
+</header>
+<div class="app-layout">
+  <aside class="sidebar"><nav id="sidebarNav"></nav></aside>
+  <main class="page">
+    <div class="page-shell">
+      
+<section class="hero no-print">
+  <div><h1>Informe municipal</h1><p>Vista preparada para revisión, impresión o generación de PDF desde el navegador.</p></div>
+  <div class="hero-meta"><strong id="reportStatus">REVISAR</strong><span>Resultado profesional</span></div>
+</section>
+<div class="progress-strip no-print" id="progress"></div>
+<div class="toolbar no-print" style="justify-content:flex-end"><button class="btn btn-primary" id="printReport">Imprimir / Guardar PDF</button></div>
+<section class="report-sheet">
+  <header class="report-head"><h1>REPORTE MUNICIPAL DE VALORACIÓN</h1><p>Motor de Valoración Fiscal ONT · Sarapiquí · Matriz V29</p></header>
+  <div id="reportContent"></div>
+  <div class="report-total">VALOR TOTAL: <span id="reportTotal">₡0</span></div>
+  <div class="callout warning"><strong>Advertencia:</strong> el resultado es una herramienta de apoyo y requiere inspección, revisión de fuentes y firma del profesional responsable.</div>
+  <div class="report-signatures"><div class="signature">Profesional responsable</div><div class="signature">Fecha y sello</div></div>
+</section>
+
+      <div class="footer">Motor ONT V29 · Archivo fuente con trazabilidad SHA-256 · Datos locales en el navegador.</div>
+    </div>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<script type="module" src="assets/js/pages/informe.js"></script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.warn);
+}
+</script>
+</body>
+</html>

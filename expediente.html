@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12345a">
+  <meta name="description" content="Datos del inmueble para el Motor ONT V29">
+  <title>Expediente · Motor ONT V29</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Abrir menú">☰</button>
+  <div class="brand">
+    <div class="brand-mark">ONT</div>
+    <div class="brand-copy"><strong>Motor de Valoración Fiscal ONT</strong><small>Sarapiquí · Matriz V29 auditada</small></div>
+  </div>
+  <div class="header-context">
+    <span>Módulo actual</span>
+    <strong id="currentPage">Valoración inmobiliaria</strong>
+  </div>
+  <div class="header-tools">
+    <div class="connection" id="connection"><span class="connection-dot"></span><span>En línea</span></div>
+    <button class="btn btn-secondary" id="importBtn" title="Importar respaldo"><span>Importar</span> ⇧</button>
+    <input type="file" id="importInput" accept=".json,application/json" hidden>
+    <button class="btn btn-secondary" id="exportBtn" title="Exportar respaldo"><span>Exportar</span> ⇩</button>
+    <button class="btn btn-success" id="saveBtn"><span>Guardar</span> ✓</button>
+    <button class="btn btn-primary" id="newBtn"><span>Nuevo</span> ＋</button>
+  </div>
+</header>
+<div class="app-layout">
+  <aside class="sidebar"><nav id="sidebarNav"></nav></aside>
+  <main class="page">
+    <div class="page-shell">
+      
+<section class="hero">
+  <div><h1>Expediente y parámetros reales</h1><p>Fuente única de datos para todos los cálculos. Los campos cambian de forma automática según el método seleccionado.</p></div>
+  <div class="hero-meta"><strong id="controlLabel">REVISAR</strong><span>Validación inmediata</span></div>
+</section>
+<div class="progress-strip" id="progress"></div>
+<div id="issues"></div>
+<form id="propertyForm">
+<section class="panel">
+  <header class="panel-header"><div><h2>Identificación del inmueble</h2><p>Datos del expediente y ubicación administrativa.</p></div><span class="badge badge-blue">Entradas</span></header>
+  <div class="panel-body">
+    <div class="grid">
+      <div class="field col-3"><label class="required">Finca</label><input data-key="finca" autocomplete="off"></div>
+      <div class="field col-3"><label class="required">Plano</label><input data-key="plano" autocomplete="off"></div>
+      <div class="field col-3"><label class="required">Distrito</label><select data-key="district" id="district"></select></div>
+      <div class="field col-3"><label class="required">Método de valoración</label><select data-key="method" id="method"></select></div>
+      <div class="field col-12"><label>Dirección o referencia</label><textarea data-key="address"></textarea></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <header class="panel-header"><div><h2>Zonas de valoración</h2><p>Solo se muestran las zonas que corresponden al distrito y método.</p></div></header>
+  <div class="panel-body">
+    <div class="grid">
+      <div class="field col-4 method-urban"><label>Código zona urbana</label><select data-key="urbanZone" id="urbanZone"></select></div>
+      <div class="field col-4 method-rural"><label>Código zona rural</label><select data-key="ruralZone" id="ruralZone"></select></div>
+      <div class="field col-4 method-agro"><label>Código zona agropecuaria</label><select data-key="agroZone" id="agroZone"></select></div>
+      <div class="field col-4 method-linked"><label>Dentro de zona de desarrollo ligada</label><select data-key="insideDevelopment"><option>Sí</option><option>No</option></select></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <header class="panel-header"><div><h2>Características reales</h2><p>Longitudes en metros reales, áreas en metros cuadrados y pendiente en porcentaje.</p></div></header>
+  <div class="panel-body">
+    <div class="grid">
+      <div class="field col-3"><label class="required">Área total real</label><input data-key="area" type="number" min="0" step="0.01"><small>m²</small></div>
+      <div class="field col-3"><label class="required">Frente principal real</label><input data-key="front" type="number" min="0" step="0.01"><small>m</small></div>
+      <div class="field col-3 method-rural"><label>Frente sección rural o fondo</label><input data-key="ruralFront" type="number" min="0" step="0.01"><small>m; obligatorio cuando existe remanente rural.</small></div>
+      <div class="field col-3"><label>Área menor rectángulo circunscrito</label><input data-key="amrc" type="number" min="0" step="0.01"><small>m²; opcional.</small></div>
+      <div class="field col-3"><label>Regularidad manual</label><input data-key="regularity" type="number" min="0.01" max="1" step="0.01"></div>
+      <div class="field col-3"><label>Regularidad activa</label><input id="activeRegularity" readonly></div>
+      <div class="field col-3"><label>Pendiente real</label><input data-key="slope" type="number" step="0.01"><small>%</small></div>
+      <div class="field col-3 method-urban"><label>Nivel respecto de vía</label><input data-key="level" type="number" step="0.01"><small>m (+ sobre / - bajo)</small></div>
+      <div class="field col-3 method-urban"><label>Ubicación en manzana</label><select data-key="location" id="location"></select></div>
+      <div class="field col-3 method-urban"><label>Sector urbano</label><select data-key="sector"><option>Residencial</option><option>Comercial</option></select></div>
+      <div class="field col-3"><label>Tipo de vía real</label><select data-key="road" id="road"></select></div>
+      <div class="field col-3 method-urban"><label>Servicios 1 reales</label><select data-key="services1" id="services1"></select><small>Código 1 a 4 según el V29.</small></div>
+      <div class="field col-3"><label>Servicios 2 reales</label><select data-key="services2" id="services2"></select><small>Código 1 a 16 según el V29.</small></div>
+      <div class="field col-3 method-rural"><label>Hidrología real</label><select data-key="hydrology" id="hydrology"></select><small>Código 1 a 5.</small></div>
+      <div class="field col-3 method-rural"><label>Capacidad de uso real</label><select data-key="capUse" id="capUse"></select><small>Clase I a VIII.</small></div>
+      <div class="field col-12"><label>Observaciones técnicas</label><textarea data-key="notes"></textarea></div>
+    </div>
+  </div>
+  <footer class="panel-footer"><a class="btn btn-secondary" href="index.html">Volver</a><a class="btn btn-primary" href="terreno.html">Continuar al terreno →</a></footer>
+</section>
+</form>
+
+      <div class="footer">Motor ONT V29 · Archivo fuente con trazabilidad SHA-256 · Datos locales en el navegador.</div>
+    </div>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<script type="module" src="assets/js/pages/expediente.js"></script>
+<script>
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("./service-worker.js").catch(console.warn);
+}
+</script>
+</body>
+</html>
